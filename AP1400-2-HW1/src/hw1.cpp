@@ -104,4 +104,15 @@ namespace algebra
 
         return matrix;
     }
+
+    Matrix transpose(const Matrix& matrix) {
+        auto n=matrix[0].size(), m=matrix.size();
+        auto x = zeros(n,m);
+        
+        for (int i=0; i<n; ++i)
+            for(int j=0; j<m; ++j)
+                x[i][j] = matrix[j][i];
+
+        return x;
+    }
 }

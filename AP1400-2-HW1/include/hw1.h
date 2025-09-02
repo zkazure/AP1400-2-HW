@@ -14,10 +14,13 @@ namespace algebra
 
     void show(const Matrix& matrix);
 
+    // basic operations
     Matrix multiply(const Matrix& matrix, double c);
     Matrix multiply(const Matrix& matrix1, const Matrix& matrix2);
     Matrix sum(const Matrix& matrix, double c);
-    Matrix sum(const Matrix& matrix1, const Matrix& matrix2); 
+    Matrix sum(const Matrix& matrix1, const Matrix& matrix2);
+
+    Matrix transpose(const Matrix& matrix);
 }
 
 #endif //AP_HW1_H
