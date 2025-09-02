@@ -136,4 +136,25 @@ namespace algebra
 
         return x;
     }
+
+    Matrix minor(const Matrix& matrix, size_t n, size_t m) {
+        if (n<0 || m<0 || matrix.empty() || n>=matrix[0].size() || m>=matrix.size())
+            throw std::logic_error("nxm out of bound!\n");
+
+        Matrix x;
+        for (int i=0; i<n-1; ++i) {
+            for (int j=0; j<m-1; ++j)
+                x[i].push_back(matrix[i][j]);
+            for (int j=n; j<matrix.size(); ++j)
+                x[i].push_back(matrix[i][j]);
+        }
+        for (int i=n; i<matrix[0].size(); ++i) {
+            for (int j=0; j<m-1; ++j)
+                x[i].push_back(matrix[i][j]);
+            for (int j=n; j<matrix.size(); ++j)
+                x[i].push_back(matrix[i][j]);
+        }
+
+        return x;
+    }
 }
