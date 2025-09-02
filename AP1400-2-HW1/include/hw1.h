@@ -12,6 +12,8 @@ namespace algebra
     Matrix ones(size_t n, size_t m);
     Matrix random(size_t n, size_t m, double min, double max);
 
+    void show(const Matrix& matrix);
+
 }
 
 #endif //AP_HW1_H

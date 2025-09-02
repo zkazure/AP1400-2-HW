@@ -1,6 +1,7 @@
-#include "hw1.h"
+#include "../include/hw1.h"
 #include <iostream>
 #include <random>
+#include <iomanip>
 
 namespace algebra
 {
@@ -38,6 +39,17 @@ namespace algebra
         return x;        
     }
 
+    // Display matrix
+    void show(const Matrix& matrix) {
+        auto n = matrix[0].size();
+        auto m = matrix.size();
+
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<m; j++)
+                std::cout << std::setw(5) << std::setprecision(3) << matrix[i][j];
+            std::cout << std::endl;
+        }
+    }
 }
 
 
