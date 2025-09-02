@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <iomanip>
+#include <stdexcept>
 
 namespace algebra
 {
@@ -52,20 +53,29 @@ namespace algebra
     }
 
     Matrix multiply(const Matrix& matrix, double c) {
+        if (matrix.empty())
+            return Matrix{};
+        
         auto n = matrix[0].size(), m = matrix.size();
         auto x = zeros(n, m);
-        for (int i=0; i<n; ++i)
-            for (int j=0; j<n; ++j)
-                x[i][j] = matrix[i][j] * c;
+        if (c!=0) {
+            for (int i=0; i<n; ++i)
+                for (int j=0; j<n; ++j)
+                    x[i][j] = matrix[i][j] * c;            
+        }
 
         return x;
     }
 
     Matrix multiply(const Matrix& matrix1, const Matrix& matrix2) {
+        if (matrix1.empty() && matrix2.empty())
+            return Matrix{};
+        if (matrix1.empty() || matrix2.empty())
+            throw std::logic_error("one matrix is None!\n");
         auto n1 = matrix1[0].size(), m1 = matrix1.size();
         auto n2 = matrix2[0].size(), m2 = matrix2.size();
         if (m1!=n2)
-            throw std::logic_error("wrong col or row for multiply!\n");
+            throw std::logic_error("wrong dimension!\n");
 
         auto n=n1, m=m2;
         auto matrix = zeros(n, m);
@@ -79,8 +89,14 @@ namespace algebra
     }
 
     Matrix sum(const Matrix& matrix, double c) {
+        if (matrix.empty())
+            return Matrix{};
+        
         auto n = matrix[0].size(), m = matrix.size();
         auto x = zeros(n, m);
+        if (c==0)
+            return matrix;
+        
         for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
                 x[i][j] = matrix[i][j] + c;
@@ -89,6 +105,11 @@ namespace algebra
     }
 
     Matrix sum(const Matrix& matrix1, const Matrix& matrix2) {
+        if (matrix1.empty() && matrix2.empty())
+            return Matrix{};
+        if (matrix1.empty() || matrix2.empty())
+            throw std::logic_error("at least one matrix is None!\n");
+        
         auto n1 = matrix1[0].size(), m1 = matrix1.size();
         auto n2 = matrix2[0].size(), m2 = matrix2.size();
         if (m1!=n2)
