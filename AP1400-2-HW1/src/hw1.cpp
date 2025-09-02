@@ -77,4 +77,31 @@ namespace algebra
 
         return matrix;
     }
+
+    Matrix sum(const Matrix& matrix, double c) {
+        auto n = matrix[0].size(), m = matrix.size();
+        auto x = zeros(n, m);
+        for (int i=0; i<n; ++i)
+            for (int j=0; j<n; ++j)
+                x[i][j] = matrix[i][j] + c;
+
+        return x;
+    }
+
+    Matrix sum(const Matrix& matrix1, const Matrix& matrix2) {
+        auto n1 = matrix1[0].size(), m1 = matrix1.size();
+        auto n2 = matrix2[0].size(), m2 = matrix2.size();
+        if (m1!=n2)
+            throw std::logic_error("wrong col or row for multiply!\n");
+
+        auto n=n1, m=m2;
+        auto matrix = zeros(n, m);
+
+        for (int i=0; i<n; ++i)
+            for (int j=0; j<m; ++j)
+                for (int k=0; k<m1; ++k)
+                    matrix[i][j] += matrix1[i][k]+matrix2[k][j];
+
+        return matrix;
+    }
 }
