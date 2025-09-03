@@ -162,7 +162,7 @@ namespace algebra
 
     double determinant(const Matrix& matrix) {
         if (matrix.empty())
-            throw std::logic_error("None matrix\n");
+            return 1;
         auto n=matrix.size(), m=matrix[0].size();
         if (n!=m)
             throw std::logic_error("det for only square matrix!\n");
@@ -174,7 +174,7 @@ namespace algebra
             det = matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0];
         else {
             for (int i=0; i<m; ++i) {
-                det += pow(-1, i) * matrix[0][i] * determinant(minor(matrix, 1, i+1));
+                det += pow(-1, i) * matrix[0][i] * determinant(minor(matrix, 0, i));
             }            
         }
         
@@ -190,7 +190,7 @@ namespace algebra
         const double det_a = determinant(matrix);
         for (int i=0; i<n; ++i) {
             for (int j=0; j<n; ++j) {
-                x[i][j] = determinant(minor(matrix, i+1, i+1)) / det_a;
+                x[i][j] = determinant(minor(matrix, i, i)) / det_a;
             }
         }
 
