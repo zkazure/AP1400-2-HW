@@ -3,10 +3,21 @@
 [[https://csdiy.wiki/%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/cpp/AUT1400/][csdiy]]
 This is the assignment of AP1400-2
 
-* Preparation
-
 #+begin_src sh
   sudo apt install cmake make gcc g++ git
   sudo apt install libgtest-dev libgmock-dev  
 #+end_src
 
+
+If you finish the tasks and want to test your program.
+change line 8 in ~src/main.cpp~
+
+#+begin_src cpp
+    if (true) // make false to run unit-tests
+#+end_src
+
+to
+
+#+begin_src cpp
+    if (false) // make false to run unit-tests
+#+end_src
