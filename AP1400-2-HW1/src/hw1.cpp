@@ -228,4 +228,26 @@ namespace algebra
 
         return x;
     }
+
+    Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2) {
+        Matrix x = matrix;
+        swap(x[r1-1], x[r2-1]);
+        return x;
+    }
+
+    Matrix ero_multiply(const Matrix& matrix, size_t r, double c) {
+        Matrix x = matrix;
+        for (int i=0; i<x.size(); ++i)
+            x[r-1][i] *= c;
+
+        return x;
+    }
+
+    Matrix ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2) {
+        Matrix x = matrix;
+        for (int i=0; i<x.size(); ++i)
+            x[r2-1][i] += x[r1-1][i] * c;
+
+        return x;
+    }
 }
