@@ -194,4 +194,38 @@ namespace algebra
 
         return x;
     }
+
+    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0) {
+        if (matrix1.empty() && matrix2.empty())
+            throw std::logic_error("both matrix is empty!\n");
+        if (matrix1.empty())
+            return matrix2;
+        if (matrix2.empty())
+            return matrix1;
+
+        auto n1=matrix1[0].size(), m1=matrix1.size();
+        auto n2=matrix2[0].size(), m2=matrix2.size();
+        Matrix x;
+        if (axis) {
+            if (n1 != n2)
+                throw std::logic_error("no same rows!\n");
+
+            for (int i=0; i<n1+n2; ++i) {
+                x.push_back(matrix1[i]);
+                for (int j=0; j<m2; ++j)
+                    x[i].push_back(matrix2[i][j]);
+            }
+            
+        } else {
+            if (m1 != m2)
+                throw std::logic_error("no same columns!\n");
+
+            for (int i=0; i<n1; ++i) 
+                x.push_back(matrix1[i]);
+            for (int i=0; i<n2; ++i)
+                x.push_back(matrix2[i]);
+        }
+
+        return x;
+    }
 }

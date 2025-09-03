@@ -24,6 +24,7 @@ namespace algebra
     Matrix minor(const Matrix& matrix, size_t n, size_t m);
     double determinant(const Matrix& matrix);
     Matrix inverse(const Matrix& matrix);
+    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0);
 }
 
 #endif //AP_HW1_H
