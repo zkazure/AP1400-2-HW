@@ -57,11 +57,11 @@ namespace algebra
         if (matrix.empty())
             return Matrix{};
         
-        auto n = matrix[0].size(), m = matrix.size();
+        auto n = matrix.size(), m = matrix[0].size();
         auto x = zeros(n, m);
         if (c!=0) {
             for (int i=0; i<n; ++i)
-                for (int j=0; j<n; ++j)
+                for (int j=0; j<m; ++j)
                     x[i][j] = matrix[i][j] * c;            
         }
 
@@ -93,7 +93,7 @@ namespace algebra
         if (matrix.empty())
             return Matrix{};
         
-        auto n = matrix[0].size(), m = matrix.size();
+        auto n = matrix.size(), m = matrix[0].size();
         auto x = zeros(n, m);
         if (c==0)
             return matrix;
@@ -111,8 +111,8 @@ namespace algebra
         if (matrix1.empty() || matrix2.empty())
             throw std::logic_error("at least one matrix is None!\n");
         
-        auto n1 = matrix1[0].size(), m1 = matrix1.size();
-        auto n2 = matrix2[0].size(), m2 = matrix2.size();
+        auto n1 = matrix1.size(), m1 = matrix1[0].size();
+        auto n2 = matrix2.size(), m2 = matrix2[0].size();
         if (m1!=n2)
             throw std::logic_error("wrong col or row for multiply!\n");
 
@@ -128,7 +128,7 @@ namespace algebra
     }
 
     Matrix transpose(const Matrix& matrix) {
-        auto n=matrix[0].size(), m=matrix.size();
+        auto n=matrix.size(), m=matrix[0].size();
         auto x = zeros(n,m);
         
         for (int i=0; i<n; ++i)
@@ -139,7 +139,7 @@ namespace algebra
     }
 
     Matrix minor(const Matrix& matrix, size_t n, size_t m) {
-        if (n<0 || m<0 || matrix.empty() || n>=matrix[0].size() || m>=matrix.size())
+        if (n<0 || m<0 || matrix.empty() || n>=matrix.size() || m>=matrix[0].size())
             throw std::logic_error("nxm out of bound!\n");
 
         Matrix x;
@@ -162,7 +162,7 @@ namespace algebra
     double determinant(const Matrix& matrix) {
         if (matrix.empty())
             throw std::logic_error("None matrix\n");
-        auto n=matrix[0].size(), m=matrix.size();
+        auto n=matrix.size(), m=matrix[0].size();
         if (n!=m)
             throw std::logic_error("det for only square matrix!\n");
         double det = 0;
@@ -183,7 +183,7 @@ namespace algebra
     Matrix inverse(const Matrix& matrix) {
         if (determinant(matrix)==0)
             throw std::logic_error("No inverse!\n");
-        auto n=matrix[0].size();
+        auto n=matrix.size();
 
         Matrix x = zeros(n, n);
         const double det_a = determinant(matrix);
@@ -204,8 +204,8 @@ namespace algebra
         if (matrix2.empty())
             return matrix1;
 
-        auto n1=matrix1[0].size(), m1=matrix1.size();
-        auto n2=matrix2[0].size(), m2=matrix2.size();
+        auto n1=matrix1.size(), m1=matrix1[0].size();
+        auto n2=matrix2.size(), m2=matrix2[0].size();
         Matrix x;
         if (axis) {
             if (n1 != n2)
@@ -255,11 +255,11 @@ namespace algebra
     Matrix upper_triangular(const Matrix& matrix) {
         if (matrix.empty())
             return Matrix{};
-        if (matrix[0].size()==1)
+        if (matrix.size()==1)
             return matrix;
         
         Matrix x = matrix;
-        auto n=x[0].size(), m=x.size();
+        auto n=x.size(), m=x[0].size();
         
         for (int i=0; i<std::min(n, m); ++i) {
             if (x[i][i] == 0) {
