@@ -3,10 +3,10 @@
 
 #include <vector>
 using std::size_t;
+using Matrix = std::vector<std::vector<double>>;
 
 namespace algebra
 {
-    using Matrix = std::vector<std::vector<double>>;
     
     Matrix zeros(size_t n, size_t m);
     Matrix ones(size_t n, size_t m);

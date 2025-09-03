@@ -1,4 +1,4 @@
-#include "../include/hw1.h"
+#include "hw1.h"
 #include <iostream>
 #include <random>
 #include <iomanip>

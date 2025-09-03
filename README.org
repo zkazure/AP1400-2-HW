@@ -7,6 +7,6 @@ This is the assignment of AP1400-2
 
 #+begin_src sh
   sudo apt install cmake make gcc g++ git
-  sudo apt install libgtest-dev
+  sudo apt install libgtest-dev libgmock-dev  
 #+end_src
 
