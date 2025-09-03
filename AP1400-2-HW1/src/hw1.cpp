@@ -73,8 +73,8 @@ namespace algebra
             return Matrix{};
         if (matrix1.empty() || matrix2.empty())
             throw std::logic_error("one matrix is None!\n");
-        auto n1 = matrix1[0].size(), m1 = matrix1.size();
-        auto n2 = matrix2[0].size(), m2 = matrix2.size();
+        auto n1 = matrix1.size(), m1 = matrix1[0].size();
+        auto n2 = matrix2.size(), m2 = matrix2[0].size();
         if (m1!=n2)
             throw std::logic_error("wrong dimension!\n");
 
