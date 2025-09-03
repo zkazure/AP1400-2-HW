@@ -178,4 +178,20 @@ namespace algebra
         
         return det;
     }
+
+    Matrix inverse(const Matrix& matrix) {
+        if (determinant(matrix)==0)
+            throw std::logic_error("No inverse!\n");
+        auto n=matrix[0].size();
+
+        Matrix x = zeros(n, n);
+        const double det_a = determinant(matrix);
+        for (int i=0; i<n; ++i) {
+            for (int j=0; j<n; ++j) {
+                x[i][j] = determinant(minor(matrix, i+1, i+1)) / det_a;
+            }
+        }
+
+        return x;
+    }
 }
