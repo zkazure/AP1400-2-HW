@@ -157,4 +157,25 @@ namespace algebra
 
         return x;
     }
+
+    double determinant(const Matrix& matrix) {
+        if (matrix.empty())
+            throw std::logic_error("None matrix\n");
+        auto n=matrix[0].size(), m=matrix.size();
+        if (n!=m)
+            throw std::logic_error("det for only square matrix!\n");
+        double det = 0;
+
+        if (n==1)
+            det = matrix[0][0];
+        else if (n==2)
+            det = matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0];
+        else {
+            for (int i=0; i<m; ++i) {
+                det += pow(-1, i) * matrix[0][i] * determinant(minor(matrix, 1, i+1));
+            }            
+        }
+        
+        return det;
+    }
 }
