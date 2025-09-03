@@ -196,7 +196,7 @@ namespace algebra
         return x;
     }
 
-    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0) {
+    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis) {
         if (matrix1.empty() && matrix2.empty())
             throw std::logic_error("both matrix is empty!\n");
         if (matrix1.empty())
