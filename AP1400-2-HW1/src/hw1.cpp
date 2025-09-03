@@ -143,20 +143,20 @@ namespace algebra
         if (n<0 || m<0 || matrix.empty() || n>=matrix.size() || m>=matrix[0].size())
             throw std::logic_error("nxm out of bound!\n");
 
+        int rows = matrix.size(), cols = matrix[0].size();
         Matrix x;
-        for (int i=0; i<n-1; ++i) {
-            for (int j=0; j<m-1; ++j)
-                x[i].push_back(matrix[i][j]);
-            for (int j=n; j<matrix.size(); ++j)
-                x[i].push_back(matrix[i][j]);
+        for (int i=0; i<rows; ++i) {
+            if (i==n)
+                continue;
+            std::vector<double> new_row;
+            for (int j=0; j<cols; ++j) {
+                if (j==m)
+                    continue;
+                new_row.push_back(matrix[i][j]);
+            }
+            x.push_back(new_row);
         }
-        for (int i=n; i<matrix[0].size(); ++i) {
-            for (int j=0; j<m-1; ++j)
-                x[i].push_back(matrix[i][j]);
-            for (int j=n; j<matrix.size(); ++j)
-                x[i].push_back(matrix[i][j]);
-        }
-
+        
         return x;
     }
 
