@@ -99,7 +99,7 @@ namespace algebra
             return matrix;
         
         for (int i=0; i<n; ++i)
-            for (int j=0; j<n; ++j)
+            for (int j=0; j<m; ++j)
                 x[i][j] = matrix[i][j] + c;
 
         return x;
@@ -113,16 +113,15 @@ namespace algebra
         
         auto n1 = matrix1.size(), m1 = matrix1[0].size();
         auto n2 = matrix2.size(), m2 = matrix2[0].size();
-        if (m1!=n2)
+        if (matrix1.size()!=matrix2.size() || matrix1[0].size()!=matrix2[0].size())
             throw std::logic_error("wrong col or row for multiply!\n");
 
-        auto n=n1, m=m2;
+        auto n=matrix1.size(), m=matrix1[0].size();
         auto matrix = zeros(n, m);
 
         for (int i=0; i<n; ++i)
             for (int j=0; j<m; ++j)
-                for (int k=0; k<m1; ++k)
-                    matrix[i][j] += matrix1[i][k]+matrix2[k][j];
+                    matrix[i][j] += matrix1[i][j]+matrix2[i][j];
 
         return matrix;
     }
