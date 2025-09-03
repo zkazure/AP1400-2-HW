@@ -3,6 +3,7 @@
 #include <random>
 #include <iomanip>
 #include <stdexcept>
+#include <algorithm>
 
 namespace algebra
 {
@@ -247,6 +248,31 @@ namespace algebra
         Matrix x = matrix;
         for (int i=0; i<x.size(); ++i)
             x[r2-1][i] += x[r1-1][i] * c;
+
+        return x;
+    }
+
+    Matrix upper_triangular(const Matrix& matrix) {
+        if (matrix.empty())
+            return Matrix{};
+        if (matrix[0].size()==1)
+            return matrix;
+        
+        Matrix x = matrix;
+        auto n=x[0].size(), m=x.size();
+        
+        for (int i=0; i<std::min(n, m); ++i) {
+            if (x[i][i] == 0) {
+                int j = i+1;
+                for (; j<n; ++j) {
+                    if (x[j][i] != 0)
+                        x = ero_swap(x, i+1, j+1);
+                }
+                for (; j<n; ++j) {
+                    x = ero_sum(x, i+1, - x[j][i]/x[i][i], j+1);
+                }
+            }
+        }
 
         return x;
     }
