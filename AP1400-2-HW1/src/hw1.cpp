@@ -127,12 +127,14 @@ namespace algebra
     }
 
     Matrix transpose(const Matrix& matrix) {
+        if (matrix.empty())
+            return Matrix{};
         auto n=matrix.size(), m=matrix[0].size();
-        auto x = zeros(n,m);
+        auto x = zeros(m,n);
         
         for (int i=0; i<n; ++i)
             for(int j=0; j<m; ++j)
-                x[i][j] = matrix[j][i];
+                x[j][i] = matrix[i][j];
 
         return x;
     }
