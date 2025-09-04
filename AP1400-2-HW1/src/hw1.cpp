@@ -246,9 +246,11 @@ namespace algebra
     }
 
     Matrix ero_multiply(const Matrix& matrix, size_t r, double c) {
+        if (r>=matrix.size())
+            throw std::logic_error("invalid index\n");
         Matrix x = matrix;
-        for (int i=0; i<x.size(); ++i)
-            x[r-1][i] *= c;
+        for (int i=0; i<x[0].size(); ++i)
+            x[r][i] *= c;
 
         return x;
     }
@@ -256,7 +258,7 @@ namespace algebra
     Matrix ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2) {
         Matrix x = matrix;
         for (int i=0; i<x.size(); ++i)
-            x[r2-1][i] += x[r1-1][i] * c;
+            x[r2][i] += x[r1][i] * c;
 
         return x;
     }
