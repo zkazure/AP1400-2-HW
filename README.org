@@ -3,6 +3,7 @@
 [[https://csdiy.wiki/%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/cpp/AUT1400/][csdiy]]
 This is the assignment of AP1400-2
 
+* Preparations
 #+begin_src sh
   sudo apt install cmake make gcc g++ git
   sudo apt install libgtest-dev libgmock-dev  
@@ -21,3 +22,12 @@ to
 #+begin_src cpp
     if (false) // make false to run unit-tests
 #+end_src
+
+* Progress
+- [X] hw1
+- [ ] hw2
+- [ ] hw3
+- [ ] hw4
+- [ ] hw5
+- [ ] hw6
+- [ ] hw7
