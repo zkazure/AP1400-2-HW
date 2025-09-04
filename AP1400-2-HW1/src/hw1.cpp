@@ -270,14 +270,17 @@ namespace algebra
         auto n=matrix.size(), m=matrix[0].size();
         if (n!=m)
             throw std::logic_error("non-square matrices have no upper triangular form\n");
-        Matrix x = matrix;
         
-        for (int i=0; i<std::min(n, m); ++i) {
+        Matrix x = matrix;
+        for (int i=0; i<n; ++i) {
             int j = i+1;
             if (x[i][i] == 0) {
                 for (; j<n; ++j) {
-                    if (x[j][i] != 0)
+                    if (x[j][i] != 0) {
                         x = ero_swap(x, i, j);
+                        j++;
+                        break;
+                    }
                 }
 
             }
