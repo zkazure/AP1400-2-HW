@@ -266,22 +266,23 @@ namespace algebra
     Matrix upper_triangular(const Matrix& matrix) {
         if (matrix.empty())
             return Matrix{};
-        if (matrix.size()==1)
-            return matrix;
         
+        auto n=matrix.size(), m=matrix[0].size();
+        if (n!=m)
+            throw std::logic_error("non-square matrices have no upper triangular form\n");
         Matrix x = matrix;
-        auto n=x.size(), m=x[0].size();
         
         for (int i=0; i<std::min(n, m); ++i) {
+            int j = i+1;
             if (x[i][i] == 0) {
-                int j = i+1;
                 for (; j<n; ++j) {
                     if (x[j][i] != 0)
-                        x = ero_swap(x, i+1, j+1);
+                        x = ero_swap(x, i, j);
                 }
-                for (; j<n; ++j) {
-                    x = ero_sum(x, i+1, - x[j][i]/x[i][i], j+1);
-                }
+
+            }
+            for (; j<n; ++j) {
+                x = ero_sum(x, i, - x[j][i]/x[i][i], j);
             }
         }
 
