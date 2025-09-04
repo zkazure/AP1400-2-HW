@@ -238,8 +238,10 @@ namespace algebra
     }
 
     Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2) {
+        if (r1>=matrix.size() || r2>=matrix.size())
+            throw std::logic_error("invalid index");
         Matrix x = matrix;
-        swap(x[r1-1], x[r2-1]);
+        swap(x[r1], x[r2]);
         return x;
     }
 
