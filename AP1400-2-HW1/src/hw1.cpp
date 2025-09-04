@@ -257,7 +257,7 @@ namespace algebra
 
     Matrix ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2) {
         Matrix x = matrix;
-        for (int i=0; i<x.size(); ++i)
+        for (int i=0; i<x[0].size(); ++i)
             x[r2][i] += x[r1][i] * c;
 
         return x;
