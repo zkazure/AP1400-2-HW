@@ -182,6 +182,8 @@ namespace algebra
     }
 
     Matrix inverse(const Matrix& matrix) {
+        if (matrix.empty())
+            return Matrix{};
         if (determinant(matrix)==0)
             throw std::logic_error("No inverse!\n");
         auto n=matrix.size();
@@ -190,7 +192,11 @@ namespace algebra
         const double det_a = determinant(matrix);
         for (int i=0; i<n; ++i) {
             for (int j=0; j<n; ++j) {
-                x[i][j] = determinant(minor(matrix, i, i)) / det_a;
+                double cofactor = determinant(minor(matrix, i, j));
+                if ((i+j)%2==1) {
+                    cofactor *= -1;
+                }
+                x[j][i] =  cofactor / det_a;
             }
         }
 
