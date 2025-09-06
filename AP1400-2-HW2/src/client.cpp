@@ -9,3 +9,7 @@ Client::Client(std::string id, Server* server)
     crypto::generate_key(this->public_key, this->private_key);
 }
 
+std::string Client::get_id() {
+    return this->id;
+}
+

@@ -8,6 +8,7 @@ class Client
 {
  public:
     Client(std::string id, const Server* server);
+ std::string get_id();
 
  private:
     const Server* const server;
