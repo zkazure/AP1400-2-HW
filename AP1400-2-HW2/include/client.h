@@ -4,10 +4,12 @@
 #include <iostream>
 #include "server.h"
 
+class Server;
+
 class Client
 {
  public:
-    Client(std::string id, const Server* server);
+	Client(std::string id, const Server& server);    
  std::string get_id();
 
  private:

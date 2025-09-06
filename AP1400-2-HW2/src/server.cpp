@@ -3,6 +3,9 @@
 #include <random>
 #include <string>
 
+class Client;
+
+Server::Server() {};
 
 std::shared_ptr<Client> Server::add_client(std::string id) {
     if (get_client(id)) {
@@ -18,7 +21,7 @@ std::shared_ptr<Client> Server::add_client(std::string id) {
         }
     }
 
-    auto cli = std::make_shared<Client>(id, this);
+    auto cli = std::make_shared<Client>(id, *this);
     clients[cli] = 5;
     
     return cli;

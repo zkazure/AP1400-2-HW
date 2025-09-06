@@ -3,8 +3,8 @@
 #include "crypto.h"
 #include <iostream>
 
-Client::Client(std::string id, Server* server)
-: id(id), server(server)
+Client::Client(std::string id, const Server& server)
+: id(id), server(& server)
 {
     crypto::generate_key(this->public_key, this->private_key);
 }
