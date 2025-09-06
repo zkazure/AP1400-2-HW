@@ -11,6 +11,7 @@ class Client
  public:
 	Client(std::string id, const Server& server);    
  std::string get_id();
+ double get_wallet() const;
 
  private:
     const Server* const server;

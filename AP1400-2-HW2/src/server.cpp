@@ -34,3 +34,12 @@ std::shared_ptr<Client> Server::get_client(std::string id) {
     }
     return nullptr;
 }
+
+double Server::get_wallet(std::string id) const
+{
+    for (auto& cli : clients) {
+        if (cli.first->get_id()==id)
+            return cli.second;
+    }
+    return 0;
+}

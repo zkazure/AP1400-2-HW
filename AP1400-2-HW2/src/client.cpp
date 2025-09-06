@@ -13,3 +13,6 @@ std::string Client::get_id() {
     return this->id;
 }
 
+double Client::get_wallet() const {
+    return server->get_wallet(this->id);
+}

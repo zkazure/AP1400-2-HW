@@ -18,13 +18,13 @@ TEST(HW1Test, TEST2) {
     auto bryan_from_server{server.get_client("bryan")};
     EXPECT_EQ(bryan.get(), bryan_from_server.get());
 }
-/*
+
 TEST(HW1Test, TEST3) {
     Server server{};
     auto bryan{server.add_client("bryan")};
     EXPECT_DOUBLE_EQ(bryan->get_wallet(), 5.0);
 }
-
+/*
 TEST(HW1Test, TEST4) {
     Server server{};
     auto bryan1{server.add_client("bryan")};
