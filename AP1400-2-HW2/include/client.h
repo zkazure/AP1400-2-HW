@@ -6,6 +6,9 @@
 
 class Client
 {
+ public:
+    Client(std::string id, const Server* server);
+
  private:
     const Server* const server;
     const std::string id;

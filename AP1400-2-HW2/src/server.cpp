@@ -1,1 +1,25 @@
 #include "server.h"
+#include <memory>
+#include <random>
+#include <string>
+
+
+std::shared_ptr<Client> Server::add_client(std::string id) {
+    if (get_client(id)) {
+        while (true) {
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(1000, 9999);
+            std::string digit_4 = std::to_string(dis(gen));
+            if (get_client(id+digit_4)) {
+                id += digit_4;
+                break;
+            }
+        }
+    }
+
+    auto cli = std::make_shared<Client>(id, this);
+    clients[cli] = 5;
+    
+    return cli;
+}

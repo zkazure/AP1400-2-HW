@@ -1,1 +1,11 @@
 #include "client.h"
+#include "server.h"
+#include "crypto.h"
+#include <iostream>
+
+Client::Client(std::string id, Server* server)
+: id(id), server(server)
+{
+    crypto::generate_key(this->public_key, this->private_key);
+}
+
