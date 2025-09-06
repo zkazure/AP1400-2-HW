@@ -23,3 +23,11 @@ std::shared_ptr<Client> Server::add_client(std::string id) {
     
     return cli;
 }
+
+std::shared_ptr<Client> Server::get_client(std::string id) {
+    for (const auto& cli : clients) {
+        if (cli.first->get_id() == id)
+            return cli.first;
+    }
+    return nullptr;
+}
