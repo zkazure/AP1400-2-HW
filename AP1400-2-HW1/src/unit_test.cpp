@@ -1,7 +1,7 @@
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "../include/hw1.h"
+#include "hw1.h"
 
 
 TEST(HW1Test, ZEROS) {
