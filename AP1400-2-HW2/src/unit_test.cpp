@@ -57,14 +57,14 @@ TEST(HW1Test, TEST7) {
     auto client = p->get_client("no_one");
     EXPECT_TRUE(client == nullptr);
 }
-/*
+
 TEST(HW1Test, TEST8) {
     Server server{};
     auto bryan{server.add_client("bryan")};
     auto clint{server.add_client("clint")};
     show_wallets(server);
 }
-
+/*
 TEST(HW1Test, TEST9) {
     Server server{};
     auto bryan{server.add_client("bryan")};

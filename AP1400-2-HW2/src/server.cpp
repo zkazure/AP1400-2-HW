@@ -41,3 +41,11 @@ double Server::get_wallet(std::string id) const
     }
     return 0;
 }
+
+void  show_wallets(const  Server& server)
+{
+	std::cout << std::string(20, '*') << std::endl;
+	for(const auto& client: server.clients)
+		std::cout << client.first->get_id() <<  " : "  << client.second << std::endl;
+	std::cout << std::string(20, '*') << std::endl;
+}
