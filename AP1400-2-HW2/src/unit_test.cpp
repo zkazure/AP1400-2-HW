@@ -106,7 +106,7 @@ TEST(HW1Test, TEST13) {
     bool valid{bryan->transfer_money("clint", 100)};
     EXPECT_FALSE(valid);
 }
-/*
+
 TEST(HW1Test, TEST14) {
     Server server{};
     pending_trxs.clear();
@@ -122,7 +122,7 @@ TEST(HW1Test, TEST14) {
         std::cout << trx <<  std::endl;
     std::cout  <<  std::string(20, '*') <<  std::endl;
 }
-
+/*
 TEST(HW1Test, TEST15) {
     Server server{};
     pending_trxs.clear();

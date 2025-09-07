@@ -11,6 +11,7 @@ class Client;
 class Server;
 
 void show_wallets(const Server& server);
+extern std::vector<std::string> pending_trxs;
 
 class Server {
  public:
