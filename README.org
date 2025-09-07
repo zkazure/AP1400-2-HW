@@ -28,7 +28,7 @@ to
 
 * Progress
 - [X] hw1
-- [ ] hw2
+- [X] hw2
 - [ ] hw3
 - [ ] hw4
 - [ ] hw5
