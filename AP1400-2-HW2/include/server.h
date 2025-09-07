@@ -7,6 +7,9 @@
 #include "client.h"
 
 class Client;
+class Server;
+
+void show_wallets(const Server& server);
 
 class Server {
  public:
@@ -14,10 +17,12 @@ class Server {
  std::shared_ptr<Client> add_client(std::string id);
  std::shared_ptr<Client> get_client(std::string id) const;
  double get_wallet(std::string id) const;
+ bool parse_trx(std::string trx, std::string& sender, std::string& receiver, double& value);
 
- friend void show_wallets(const Server& server);
  private:
+    friend void show_wallets(const Server& server);
  std::map<std::shared_ptr<Client>, double> clients;
 };
 
+void show_wallets(const Server& server);
 #endif //SERVER_H
