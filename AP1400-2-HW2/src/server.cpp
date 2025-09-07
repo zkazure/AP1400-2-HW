@@ -1,8 +1,10 @@
 #include "server.h"
+#include <cstddef>
 #include <memory>
 #include <random>
 #include <stdexcept>
 #include <string>
+#include "crypto.h"
 
 class Client;
 
@@ -88,4 +90,32 @@ bool Server::add_pending_trx(std::string trx, std::string signature) const
 
     pending_trxs.push_back(trx);
     return true;
+}
+
+size_t Server::mine() {
+    std::string mempool{};
+    for (std::string trx: pending_trxs)
+        mempool += trx;
+
+    while(true) {
+        auto miner = clients.begin()->first;
+        auto nonce = miner->generate_nonce();
+        auto hash = crypto::sha256(mempool+std::to_string(nonce));
+        if (hash.substr(0, 10).find("000") != std::string::npos) {
+            clients[miner] += 6.25;
+            
+            std::string sender, receiver;
+            double value;
+            for (auto& trx: pending_trxs) {
+                parse_trx(trx, sender, receiver, value);
+                clients[get_client(sender)] -= value;
+                clients[get_client(receiver)] += value;
+            }
+
+            pending_trxs.clear();
+            std::cout << miner->get_id() << std::endl;
+            return nonce;
+        }
+        
+    }
 }

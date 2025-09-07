@@ -15,6 +15,7 @@ class Client
  std::string get_publickey() const;
  std::string sign(std::string txt) const;
  bool transfer_money(std::string receiver, double value) const;
+ size_t generate_nonce();
 
  private:
     const Server* const server;

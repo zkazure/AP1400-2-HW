@@ -1,7 +1,9 @@
 #include "client.h"
 #include "server.h"
 #include "crypto.h"
+#include <climits>
 #include <iostream>
+#include <random>
 #include <string>
 
 Client::Client(std::string id, const Server& server)
@@ -32,4 +34,11 @@ bool Client::transfer_money(std::string receiver, double value) const
 {
     std::string trx = this->id + "-" + receiver + "-" + std::to_string(value);
     return server->add_pending_trx(trx, sign(trx));
+}
+
+size_t Client::generate_nonce() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, INT_MAX);
+    return dis(gen);
 }
