@@ -5,6 +5,7 @@
 #include <map>
 #include <memory>
 #include "client.h"
+#include <vector>
 
 class Client;
 class Server;
@@ -18,6 +19,7 @@ class Server {
  std::shared_ptr<Client> get_client(std::string id) const;
  double get_wallet(std::string id) const;
  static bool parse_trx(std::string trx, std::string& sender, std::string& receiver, double& value);
+ bool add_pending_trx(std::string trx, std::string signature) const;
 
  private:
     friend void show_wallets(const Server& server);

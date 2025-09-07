@@ -14,8 +14,7 @@ class Client
  double get_wallet() const;
  std::string get_publickey() const;
  std::string sign(std::string txt) const;
-
-
+ bool transfer_money(std::string receiver, double value) const;
 
  private:
     const Server* const server;

@@ -8,6 +8,7 @@ class Client;
 
 Server::Server() {};
 
+std::vector<std::string> pending_trxs;
 
 void show_wallets(const Server& server)
 {
@@ -67,5 +68,24 @@ bool Server::parse_trx(std::string trx, std::string& sender, std::string& receiv
     sender = trx.substr(0, idx[0]);
     receiver = trx.substr(idx[0]+1, idx[1]-idx[0]-1);
     value = std::stod(trx.substr(idx[1]+1));
+    return true;
+}
+
+bool Server::add_pending_trx(std::string trx, std::string signature) const
+{
+    std::string sender, receiver;
+    double value;
+    parse_trx(trx, sender, receiver, value);
+    if (!get_client(sender) || !get_client(receiver))
+        return false;
+
+    for (auto const cli : clients) {
+        if (cli.first->get_id()==sender) {
+            if (cli.second<value)
+                throw std::runtime_error("no enough money");
+        }
+    }
+
+    pending_trxs.push_back(trx);
     return true;
 }

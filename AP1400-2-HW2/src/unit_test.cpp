@@ -90,7 +90,7 @@ TEST(HW1Test, TEST11) {
     double value;
     EXPECT_THROW(Server::parse_trx("sarah-clay_0.5", sender, receiver, value), std::runtime_error);
 }
-/*
+
 TEST(HW1Test, TEST12) {
     Server server{};
     auto bryan{server.add_client("bryan")};
@@ -98,7 +98,7 @@ TEST(HW1Test, TEST12) {
     bool valid{bryan->transfer_money("no_one", 0.5)};
     EXPECT_FALSE(valid);
 }
-
+/*
 TEST(HW1Test, TEST13) {
     Server server{};
     auto bryan{server.add_client("bryan")};
