@@ -17,6 +17,12 @@ double Client::get_wallet() const {
     return server->get_wallet(this->id);
 }
 
-std::string Client::get_publickey() {
+std::string Client::get_publickey() const
+{
     return this->public_key;
+}
+
+std::string Client::sign(std::string txt) const
+{
+    return crypto::signMessage(this->private_key, txt);
 }
