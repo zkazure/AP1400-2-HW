@@ -82,7 +82,7 @@ bool Server::add_pending_trx(std::string trx, std::string signature) const
     for (auto const cli : clients) {
         if (cli.first->get_id()==sender) {
             if (cli.second<value)
-                throw std::runtime_error("no enough money");
+                return false;
         }
     }
 

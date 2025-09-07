@@ -98,7 +98,7 @@ TEST(HW1Test, TEST12) {
     bool valid{bryan->transfer_money("no_one", 0.5)};
     EXPECT_FALSE(valid);
 }
-/*
+
 TEST(HW1Test, TEST13) {
     Server server{};
     auto bryan{server.add_client("bryan")};
@@ -106,7 +106,7 @@ TEST(HW1Test, TEST13) {
     bool valid{bryan->transfer_money("clint", 100)};
     EXPECT_FALSE(valid);
 }
-
+/*
 TEST(HW1Test, TEST14) {
     Server server{};
     pending_trxs.clear();
