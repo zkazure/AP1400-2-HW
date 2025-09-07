@@ -1,6 +1,7 @@
 #include "server.h"
 #include <memory>
 #include <random>
+#include <stdexcept>
 #include <string>
 
 class Client;
@@ -61,12 +62,10 @@ bool Server::parse_trx(std::string trx, std::string& sender, std::string& receiv
         }
     }
 
-    if (cnt==2) {
-        sender = trx.substr(0, idx[0]);
-        receiver = trx.substr(idx[0]+1, idx[1]-idx[0]-1);
-        value = std::stod(trx.substr(idx[1]+1));
-        return true;
-    }
-
-    return false;
+    if (cnt!=2)
+        throw std::runtime_error("invalid syntax");
+    sender = trx.substr(0, idx[0]);
+    receiver = trx.substr(idx[0]+1, idx[1]-idx[0]-1);
+    value = std::stod(trx.substr(idx[1]+1));
+    return true;
 }
